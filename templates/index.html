@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, Mars!</h1>
+      Press the button below to retrieve the latest data<br/>
+      <a class="btn btn-primary" href="/scrape">Scrape</a>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Latest News</h1> <br/>
+        <h3>{{data.mars_news_headline}}</h3>
+        {{data.mars_news_teaser}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Photo of the Day</h1><br/>
+        <img class="img-fluid" alt="Mars photo" src="{{data.mars_image_url}}" style="width: 100%">
+      </div>
+      <div class="col-md-4">
+        <h1>Mars Facts</h1><br/>
+        {{data.mars_table_data|safe}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Mars Hemispheres</h1><br/>
+      </div>
+      
+      {% for hemi in data.mars_hemi_data %}
+      <div class="col-md-6">
+        <div class="card">
+          <img src="{{hemi.url}}" class="card-img-top img-fluid img-thumbnail">
+          <div class="card-body">
+          <h3 class="card-title">{{hemi.name}}</h3>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</body>
+
+</html>
